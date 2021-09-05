@@ -1,0 +1,10 @@
+@import '.././assets/styles';
+
+.app-wrapper {
+  height: 100%;
+
+  &__main-toolbar {
+    color: map-get($app-colors, white);
+    background-color: map-get($app-colors, burgundy);
+  }
+}

@@ -1,0 +1,19 @@
+<div
+  class="city-weather-list"
+  fxLayout="row wrap"
+  fxLayoutAlign="center center"
+>
+  <div
+    class="city-weather-list__card"
+    *ngFor="let item of citiesWeatherList$ | async"
+  >
+    <app-card
+      [title]="item.cityName"
+      [icons]="cityWeatherIcons"
+      [bottomSubtitle]="item.windSpeed"
+      [contentImage]="item.temperature?.image || null"
+      [subTitle]="item.temperature?.description || null"
+      [mainDescription]="item.temperature?.value || null"
+    ></app-card>
+  </div>
+</div>
