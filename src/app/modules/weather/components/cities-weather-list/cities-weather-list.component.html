@@ -5,6 +5,7 @@
 >
   <div
     class="city-weather-list__card"
+    (click)="onCitySelect(item.cityName || '')"
     *ngFor="let item of citiesWeatherList$ | async"
   >
     <app-card

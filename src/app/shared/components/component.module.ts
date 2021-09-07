@@ -1,9 +1,12 @@
 import { NgModule } from "@angular/core";
 
 import { CardComponent } from './card/card.component';
+
 import { MaterialModule } from './../modules/material.module';
 
-const componentsUsed = [CardComponent];
+const componentsUsed = [
+  CardComponent,
+];
 
 @NgModule({
   declarations: [

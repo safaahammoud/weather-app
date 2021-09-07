@@ -4,6 +4,7 @@
   height: 100%;
 
   &__main-toolbar {
+    position: relative;
     color: map-get($app-colors, white);
     background-color: map-get($app-colors, burgundy);
   }

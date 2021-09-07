@@ -18,7 +18,7 @@ interface RequestOptions {
 @Injectable({
   providedIn: 'root'
 })
-export class ApiRepository {
+export class ApiService {
   public pathUrl = environment.appApiUrl;
 
   constructor(private _httpClient: HttpClient) { }

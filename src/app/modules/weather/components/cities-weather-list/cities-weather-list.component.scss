@@ -1,5 +1,8 @@
 .city-weather-list {
+  margin-top: 20px;
+
   &__card {
     margin: 15px;
+    cursor: pointer;
   }
 }

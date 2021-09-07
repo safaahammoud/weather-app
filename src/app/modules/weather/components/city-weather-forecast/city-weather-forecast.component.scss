@@ -1,0 +1,11 @@
+.city-weather-forecast {
+  margin-top: 20px;
+
+  &__header {
+    padding-left: 15px;
+  }
+
+  &__list-item, &__header {
+    margin-bottom: 30px;
+  }
+}

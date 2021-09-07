@@ -1,3 +1,5 @@
+import { CityWeather } from './../models/city-weather.model';
+import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
@@ -34,6 +36,6 @@ export class CitiesWeatherEffects {
 
   constructor(
     private actions$: Actions,
-    private weatherService: WeatherService,
+    private weatherService: WeatherService
   ) {}
 }

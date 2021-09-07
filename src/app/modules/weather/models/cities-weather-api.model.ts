@@ -1,3 +1,10 @@
+export interface CitiesWeatherApi {
+  cod: number;
+  count: number;
+  message: string;
+  list: CityWeatherDetails[];
+}
+
 export interface CityWeatherDetails {
   id: number | null;
   name: string | null;
@@ -38,11 +45,4 @@ export interface CityWeatherDetails {
       description: string | null;
     }
   ]
-}
-
-export interface CitiesWeatherApi {
-  cod: number;
-  count: number;
-  message: string;
-  list: CityWeatherDetails[];
 }

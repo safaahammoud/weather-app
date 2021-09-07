@@ -1,0 +1,45 @@
+<div class="city-weather-forecast">
+  <div class="city-weather-forecast__header display-2">
+    <span>
+      {{cityWeatherForecast.cityName}}
+    </span>
+
+    <span *ngIf="cityWeatherForecast && cityWeatherForecast.forecast.length > 0">
+      {{cityWeatherForecast.forecast[0].temperature}}
+    </span>
+  </div>
+
+  <mat-list
+    role="list"
+    *ngIf="cityWeatherForecast.forecast && cityWeatherForecast.forecast.length > 0"
+  >
+    <mat-list-item
+      role="listitem"
+      fxLayout="row"
+      class="city-weather-forecast__list-item"
+      *ngFor="let forecastItem of cityWeatherForecast.forecast"
+    >
+      <span>
+        {{forecastItem.date}}
+      </span>
+
+      <img
+        fxFlexOffset="20px"
+        alt="forecast image"
+        class="city-weather-forecast__image"
+        [src]="forecastItem.imageUrl"
+      />
+
+      <div
+        fxFlexOffset="20px"
+        class="display-4"
+      >
+        {{forecastItem.description}}
+      </div>
+
+      <div fxFlexOffset="20px">
+        {{forecastItem.maxTemperature}}/{{forecastItem.minTemperature}}
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
