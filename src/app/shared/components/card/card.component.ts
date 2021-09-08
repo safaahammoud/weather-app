@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
-
   private _title:string | null = '';
   @Input() public set title(title) {
       this._title = title;

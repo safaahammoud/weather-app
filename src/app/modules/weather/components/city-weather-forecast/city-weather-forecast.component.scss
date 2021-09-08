@@ -3,9 +3,11 @@
 
   &__header {
     padding-left: 15px;
+    margin-bottom: 30px;
+
+    &__arrow-back {
+      cursor: pointer;
+    }
   }
 
-  &__list-item, &__header {
-    margin-bottom: 30px;
-  }
 }

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { fetchCitiesWeather, showLoader } from './cities-weather.actions';
+import { fetchCitiesWeather, toggleLoaderVisibility } from './cities-weather.actions';
 import { CityWeather } from '../models/city-weather.model';
 import { CityWeatherForecast } from './../models/city-weather-forecast.model';
 
@@ -15,5 +15,5 @@ export const citiesWeatherReducer = createReducer(
 
 export const loadingReducer = createReducer(
   initialLoaderState,
-  on(showLoader, (_state, { isLoading }) => isLoading),
+  on(toggleLoaderVisibility, (_state, { isLoading }) => isLoading),
 )

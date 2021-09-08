@@ -4,3 +4,8 @@ export interface AppState {
   isLoading: boolean;
   citiesWeatherList: CityWeather[];
 }
+
+export default {
+  isLoading: false,
+  citiesWeatherList: [],
+} as AppState;

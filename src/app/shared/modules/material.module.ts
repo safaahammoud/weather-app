@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const materialUsedModules = [
   MatCardModule,
@@ -13,6 +14,7 @@ const materialUsedModules = [
   MatIconModule,
   MatProgressBarModule,
   MatToolbarModule,
+  MatSnackBarModule,
 ]
 
 @NgModule({

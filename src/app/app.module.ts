@@ -9,11 +9,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CitiesWeatherEffects } from './modules/weather/store/cities-weather.effects';
-import { citiesWeatherReducer, loadingReducer } from './modules/weather/store/cities-weather.reducers';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { environment } from './../environments/environment';
 import { MaterialModule } from './shared/modules/material.module';
 import { ProgressBarComponent } from './shared/components/progress-bar/progress-bar.component';
+import appReducers from './store/app.reducers';
 
 @NgModule({
   declarations: [
@@ -28,10 +28,7 @@ import { ProgressBarComponent } from './shared/components/progress-bar/progress-
     HttpClientModule,
     MaterialModule,
     EffectsModule.forRoot([CitiesWeatherEffects]),
-    StoreModule.forRoot({
-      citiesWeatherList: citiesWeatherReducer,
-      isLoading: loadingReducer
-    }),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

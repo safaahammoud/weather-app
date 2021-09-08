@@ -1,0 +1,37 @@
+<mat-list
+  role="list"
+  *ngIf="list && list.length > 0; else emptyList"
+>
+  <mat-list-item
+    role="listitem"
+    fxLayout="row"
+    class="city-weather-forecast__list-item"
+    *ngFor="let forecastItem of list"
+  >
+    <span>
+      {{forecastItem.date}}
+    </span>
+
+    <img
+      fxFlexOffset="20px"
+      alt="forecast image"
+      class="city-weather-forecast__image"
+      [src]="forecastItem.imageUrl"
+    />
+
+    <div
+      fxFlexOffset="20px"
+      class="display-4"
+    >
+      {{forecastItem.description}}
+    </div>
+
+    <div fxFlexOffset="20px">
+      {{forecastItem.maxTemperature}}/{{forecastItem.minTemperature}}
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<ng-template #emptyList>
+  No data found
+</ng-template>

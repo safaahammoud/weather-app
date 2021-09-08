@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { CityWeatherForecast, initialCityWeatherForecast } from './../../models/city-weather-forecast.model';
+import { CityWeatherForecast, Forecast, initialCityWeatherForecast } from './../../models/city-weather-forecast.model';
 import { WeatherService } from './../../services/weather.service';
 
 @Component({
@@ -10,11 +11,16 @@ import { WeatherService } from './../../services/weather.service';
   templateUrl: './city-weather-forecast.component.html',
   styleUrls: ['./city-weather-forecast.component.scss']
 })
-export class CityWeatherForecastComponent implements OnInit {
+export class CityWeatherForecastComponent implements OnInit, OnDestroy {
   _routeParamSubscription: Subscription = new Subscription();
   cityWeatherForecast: CityWeatherForecast = initialCityWeatherForecast;
+  cityWeatherForecastList: Forecast[] = [];
 
-  constructor(private route: ActivatedRoute, private weatherService: WeatherService) {}
+  constructor(
+    private location: Location,
+    private route: ActivatedRoute,
+    private weatherService: WeatherService,
+  ) {}
 
   ngOnInit(): void {
     this._routeParamSubscription = this.route.queryParamMap.subscribe((param) => {
@@ -23,8 +29,17 @@ export class CityWeatherForecastComponent implements OnInit {
       if (routeParams) {
         this.weatherService.fetchCityWeatherForecast(routeParams?.cityName).subscribe(response => {
           this.cityWeatherForecast = response;
+          this.cityWeatherForecastList = response.forecast;
         });
       }
     });
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  ngOnDestroy() {
+    this._routeParamSubscription.unsubscribe();
   }
 }

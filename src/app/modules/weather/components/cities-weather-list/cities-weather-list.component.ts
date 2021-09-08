@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 
-import { CityWeather } from './../../models/city-weather.model';
+import { AppState } from './../../../../store/app.state';
+import { toggleLoaderVisibility } from './../../store/cities-weather.actions';
 import { selectCitiesWeatherList } from './../../store/cities-weather.selectors';
 
 @Component({
@@ -12,25 +13,25 @@ import { selectCitiesWeatherList } from './../../store/cities-weather.selectors'
 })
 export class CitiesWeatherListComponent implements OnInit {
   citiesWeatherList$ = this.store.select(selectCitiesWeatherList);
-  cityWeatherIcons:{[key: string]:string} = { bottomSubtitle: 'air', title: 'location_city' };
+  cityWeatherIcons: {[key: string]: string} = {
+    bottomSubtitle: 'air',
+    title: 'location_city',
+  };
 
   constructor(
     private router: Router,
-    private store: Store<{
-      citiesWeatherList: CityWeather[],
-      cityName: string,
-      isLoading: boolean,
-    }>
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(toggleLoaderVisibility({ isLoading: true }));
     this.store.dispatch({ type: '[Cities Weather List Page] Load Cities Weather' });
   }
 
-  onCitySelect(cityName: string):void {
+  onCitySelect(cityName: string): void {
     this.router.navigate(['/weather/weather-forecast'], {
       queryParams: {
-        params: JSON.stringify({cityName}),
+        params: JSON.stringify({ cityName }),
       }
     });
   }

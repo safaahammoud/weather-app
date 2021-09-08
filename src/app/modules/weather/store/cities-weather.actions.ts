@@ -7,7 +7,7 @@ export const fetchCitiesWeather = createAction(
   props<{ citiesWeatherList: CityWeather[] }>()
 );
 
-export const showLoader = createAction(
+export const toggleLoaderVisibility = createAction(
   '[Main Layout Page] Manage Loader visibility',
   props<{ isLoading: boolean }>()
 );

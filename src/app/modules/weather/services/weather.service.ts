@@ -1,4 +1,3 @@
-import { DateUtils } from './../../../shared/pipes/dateUtil';
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,6 +12,7 @@ import { CityWeather } from './../models/city-weather-forecast-api.model';
 import { CityWeatherForecast } from './../models/city-weather-forecast.model';
 import { CitiesWeatherApi, CityWeatherDetails } from './../models/cities-weather-api.model';
 import { CityWeatherForecastApi } from './../models/city-weather-forecast-api.model';
+import { DateUtils } from './../../../shared/pipes/dateUtil';
 
 
 @Injectable({
