@@ -1,4 +1,4 @@
-@import '../../../../assets/styles/index';
+@import 'src/styles';
 
 .card-wrapper {
   width: 250px;
@@ -7,15 +7,14 @@
     0 3px 1px -2px rgb(0 0 0 / 20%),
     0 2px 2px 0 rgb(0 0 0 / 14%),
     0 1px 5px 0 rgb(0 0 0 / 12%);
-  background: linear-gradient(150deg, map-get($app-colors, grey), map-get($app-colors, burgundy-light));
-
-  mat-card-header {
-    //TODO: move it to styles
-    margin-left: -16px;
-  }
+  background: linear-gradient(
+    150deg,
+    map-get($wa-colors, brand-grey),
+    map-get($wa-colors, brand-burgundy-light),
+  );
 
   &__content-main-title, &__sub-title {
-    @include color-with-opacity(black, 0.6);
+    @include color-with-opacity(brand-black, 0.6);
   }
 }
 

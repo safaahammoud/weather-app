@@ -1,11 +1,13 @@
 <mat-card class="card-wrapper">
   <mat-card-header class="card-wrapper__header-title">
     <mat-card-title
-      class="display-2"
       fxLayout="row"
+      class="display-2"
       fxLayoutAlign="start center"
     >
-      <mat-icon class="mr-10">{{icons.title}}</mat-icon>
+      <mat-icon class="mr-10">
+        {{ icons.title }}
+      </mat-icon>
 
       <div>
         {{title}}
@@ -23,10 +25,13 @@
       fxLayoutAlign="start center"
     >
       <span class="card-wrapper__content-main-title display-1">
-        {{mainDescription}}
+        {{ mainDescription }}
       </span>
 
-      <img alt="card image" [src]="contentImage"/>
+      <img
+        alt="card image"
+        [src]="contentImage"
+      />
     </div>
 
     <div
@@ -34,9 +39,13 @@
       fxLayoutAlign="start center"
       class="display-4 card-wrapper__sub-title"
     >
-      <mat-icon class="mr-10">{{icons.bottomSubtitle}}</mat-icon>
+      <mat-icon class="mr-10">
+        {{ icons.bottomSubtitle }}
+      </mat-icon>
 
-      <span>{{bottomSubtitle}}</span>
+      <span>
+        {{ bottomSubtitle }}
+      </span>
     </div>
   </mat-card-content>
 </mat-card>

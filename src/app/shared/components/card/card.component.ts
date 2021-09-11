@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-card',
-    templateUrl: './card.component.html',
-    styleUrls: ['./card.component.scss']
+  selector: 'wa-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
   private _title:string | null = '';
@@ -53,6 +53,4 @@ export class CardComponent {
   public get icons(): {[key:string]: string} {
       return this._icons;
   }
-
-  constructor() { }
 }
