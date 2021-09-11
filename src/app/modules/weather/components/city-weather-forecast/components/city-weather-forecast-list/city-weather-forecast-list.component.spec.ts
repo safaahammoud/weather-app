@@ -1,26 +1,24 @@
-import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeatherService } from '../../shared/services/weather.service';
-import { CityWeatherForecastComponent } from './city-weather-forecast.component';
-import appReducers from 'app/store/app.reducers';
+import { WeatherService } from './../../../../shared/services/weather.service';
+import { CityWeatherForecastListComponent } from './city-weather-forecast-list.component';
 
 class MockWeatherService {
   // TODO: adding values
 }
 
-describe('CityWeatherForecastComponent', () => {
-  let component: CityWeatherForecastComponent;
-  let fixture: ComponentFixture<CityWeatherForecastComponent>;
+describe('CityWeatherForecastListComponent', () => {
+  let component: CityWeatherForecastListComponent;
+  let fixture: ComponentFixture<CityWeatherForecastListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        CityWeatherForecastComponent,
+        CityWeatherForecastListComponent,
       ],
       providers: [
-        CityWeatherForecastComponent,
+        CityWeatherForecastListComponent,
         {
           provide: WeatherService,
           useClass: MockWeatherService,
@@ -28,14 +26,13 @@ describe('CityWeatherForecastComponent', () => {
       ],
       imports: [
         RouterTestingModule,
-        StoreModule.forRoot(appReducers),
       ],
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CityWeatherForecastComponent);
+    fixture = TestBed.createComponent(CityWeatherForecastListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

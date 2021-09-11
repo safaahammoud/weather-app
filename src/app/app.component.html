@@ -1,12 +1,12 @@
-<div class="app-wrapper">
-  <mat-toolbar class="app-wrapper__main-toolbar">
+<div class="wa-wrapper">
+  <mat-toolbar class="wa-wrapper__main-toolbar">
     <mat-toolbar-row>
       <h2 class="display-3">
         {{title}}
       </h2>
     </mat-toolbar-row>
 
-    <app-progress-bar *ngIf="isLoading$ | async"></app-progress-bar>
+    <wa-progress-bar *ngIf="isLoading$ | async"></wa-progress-bar>
   </mat-toolbar>
 
   <router-outlet></router-outlet>

@@ -121,5 +121,20 @@
       }
     }
   },
-  "defaultProject": "weather-app"
+  "defaultProject": "weather-app",
+  "schematics": {
+    "@schematics/angular:class": {
+      "skipTests": false
+    },
+    "@schematics/angular:component": {
+      "prefix": "wa",
+      "export": true,
+      "lintFix": true,
+      "style": "scss",
+      "changeDetection": "OnPush"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "wa"
+    }
+  }
 }

@@ -1,11 +1,11 @@
-@import '.././assets/styles';
+@import '../styles/index';
 
-.app-wrapper {
+.wa-wrapper {
   height: 100%;
 
   &__main-toolbar {
     position: relative;
-    color: map-get($app-colors, white);
-    background-color: map-get($app-colors, burgundy);
+    color: map-get($wa-colors, brand-white);
+    background-color: map-get($wa-colors, brand-burgundy);
   }
 }

@@ -1,20 +1,25 @@
 <div class="city-weather-forecast">
   <div class="city-weather-forecast__header display-2">
     <span>
-      <mat-icon class="city-weather-forecast__header__arrow-back" (click)="goBack()">
+      <mat-icon
+        (click)="goBack()"
+        class="city-weather-forecast__header__arrow-back"
+      >
         arrow_back
       </mat-icon>
 
-      {{cityWeatherForecast.cityName}}
+      <span>
+        {{ cityWeatherForecast.cityName }}
+      </span>
     </span>
 
     <span *ngIf="cityWeatherForecast && cityWeatherForecast.forecast.length > 0">
-      {{cityWeatherForecast.forecast[0].temperature}}
+      {{ cityWeatherForecast.forecast[0].temperature }}
     </span>
   </div>
 
-  <app-city-weather-forecast-list
+  <wa-city-weather-forecast-list
     class="city-weather-forecast__list"
-    [list]="cityWeatherForecastList"
-  ></app-city-weather-forecast-list>
+    [list]="cityWeatherForecast.forecast"
+  ></wa-city-weather-forecast-list>
 </div>

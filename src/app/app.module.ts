@@ -30,9 +30,9 @@ import appReducers from './store/app.reducers';
     EffectsModule.forRoot([CitiesWeatherEffects]),
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+      maxAge: 25,
+      autoPause: true,
+      logOnly: !environment.production,
     }),
   ],
   providers: [],

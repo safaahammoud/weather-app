@@ -1,27 +1,38 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  OnInit,
+  Component,
+  OnDestroy,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { selectIsLoading } from './modules/weather/store/cities-weather.selectors';
+import { selectPending } from './modules/weather/store/cities-weather.selectors';
 import { AppState } from './store/app.state';
 import { AlertService } from './shared/services/alert.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'wa-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Weather Forecast';
-  isLoading$ = this.store.select(selectIsLoading);
+  public readonly title: string = 'Weather Forecast';
+  public readonly isLoading$: Observable<boolean> = this.store.select(selectPending);
 
-  constructor(
+  public constructor(
     private snackBar: MatSnackBar,
     private store: Store<AppState>,
     private alertService: AlertService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.changeDetectorRef.detectChanges();
+
     this.alertService.notification$.subscribe((message: string) => {
       this.snackBar.open(message, 'x', {
           duration: 3000
@@ -29,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.alertService.notification$.unsubscribe();
   }
 }

@@ -1,34 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { AppState } from './../../../../store/app.state';
-import { toggleLoaderVisibility } from './../../store/cities-weather.actions';
+import { fetchCityWeatherForecast } from './../../store/cities-weather.actions';
 import { selectCitiesWeatherList } from './../../store/cities-weather.selectors';
+import { CityWeather } from '../../shared/models/city-weather.model';
 
 @Component({
-  selector: 'app-cities-weather-list',
+  selector: 'wa-cities-weather-list',
   templateUrl: './cities-weather-list.component.html',
-  styleUrls: ['./cities-weather-list.component.scss']
+  styleUrls: ['./cities-weather-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CitiesWeatherListComponent implements OnInit {
-  citiesWeatherList$ = this.store.select(selectCitiesWeatherList);
-  cityWeatherIcons: {[key: string]: string} = {
+  public citiesWeatherList$: Observable<CityWeather[]> = this.store.select(selectCitiesWeatherList);
+  public readonly cityWeatherIcons: { [key: string]: string } = {
     bottomSubtitle: 'air',
     title: 'location_city',
   };
 
-  constructor(
+  public constructor(
     private router: Router,
-    private store: Store<AppState>
+    private readonly store: Store<AppState>,
   ) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(toggleLoaderVisibility({ isLoading: true }));
-    this.store.dispatch({ type: '[Cities Weather List Page] Load Cities Weather' });
+  public ngOnInit(): void {
+    this.store.dispatch({ type: '[Cities List/API] Fetch Cities and their Weather' });
   }
 
-  onCitySelect(cityName: string): void {
+  public onCitySelect(cityName: string): void {
+    this.store.dispatch(fetchCityWeatherForecast({
+      pending: true,
+      forecastCityName: cityName,
+    }));
+
     this.router.navigate(['/weather/weather-forecast'], {
       queryParams: {
         params: JSON.stringify({ cityName }),

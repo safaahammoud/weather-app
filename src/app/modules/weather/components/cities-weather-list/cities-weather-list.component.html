@@ -8,13 +8,13 @@
     (click)="onCitySelect(item.cityName || '')"
     *ngFor="let item of citiesWeatherList$ | async"
   >
-    <app-card
+    <wa-card
       [title]="item.cityName"
       [icons]="cityWeatherIcons"
       [bottomSubtitle]="item.windSpeed"
       [contentImage]="item.temperature?.image || null"
       [subTitle]="item.temperature?.description || null"
       [mainDescription]="item.temperature?.value || null"
-    ></app-card>
+    ></wa-card>
   </div>
 </div>
