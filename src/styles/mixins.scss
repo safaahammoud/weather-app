@@ -1,4 +1,4 @@
 @mixin color-with-opacity($color, $opacity: 0) {
-  $color: map-get($app-colors, $color);
+  $color: map-get($wa-colors, $color);
   color: rgba($color, $opacity);
 }

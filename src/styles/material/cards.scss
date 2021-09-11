@@ -1,0 +1,11 @@
+.mat-card {
+  .mat-card-header {
+    &.card-wrapper {
+      &__header-title {
+        .mat-card-header-text {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
