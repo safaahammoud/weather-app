@@ -1,55 +1,51 @@
-import { AlertService } from './../../../shared/services/alert.service';
-import { AppState } from './../../../store/app.state';
-import { toggleLoaderVisibility } from './cities-weather.actions';
-import { CityWeather } from './../models/city-weather.model';
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 
-import { CityWeatherDetails } from './../models/cities-weather-api.model';
-import { WeatherService } from './../services/weather.service';
-import { MeasurementUnits } from './../enums/units.enum';
+import { fetchCitiesWeatherFail } from './cities-weather.actions';
+import { CityWeatherDetails } from '../shared/models/cities-weather-api.model';
+import { WeatherService } from '../shared/services/weather.service';
+import { MeasurementUnits } from '../shared/enums/units.enum';
+import { AlertService } from './../../../shared/services/alert.service';
 
 @Injectable()
 export class CitiesWeatherEffects {
+  public loadCitiesWeather$ = createEffect(() => this.actions$
+    .pipe(
+      ofType('[Cities List/API] Fetch Cities and their Weather'),
+      switchMap(() => this.weatherService.fetchCitiesWeather()),
+      map((citiesWeatherList) => ({
+        type: '[Cities List/API] Fetch Cities and their Weather Success',
+        pending: false,
+        citiesWeatherList: citiesWeatherList.map((cityWeather: CityWeatherDetails) => ({
+          id: cityWeather?.id,
+          cityName: cityWeather?.name,
+          windSpeed: cityWeather.wind?.speed + MeasurementUnits.MeterPerSecond,
+          temperature: {
+            value: cityWeather.main?.temp + MeasurementUnits.Celsius,
+            description: cityWeather?.weather[0]?.description,
+            image: `http://openweathermap.org/img/wn/${cityWeather?.weather[0]?.icon}@2x.png`
+          },
+        }))
+      })),
+      catchError((error: Error) => {
+        this.alertService.notification$.next('Error Occurred');
+        this.store.dispatch(fetchCitiesWeatherFail({
+          error,
+          pending: false,
+          citiesWeatherList: [],
+        }));
 
-  loadCitiesWeather$ = createEffect(() => this.actions$.pipe(
-    ofType('[Cities Weather List Page] Load Cities Weather'),
-    mergeMap(() => this.weatherService.fetchCitiesWeather()
-      .pipe(
-        map((citiesWeatherList) => {
-          this.store.dispatch(toggleLoaderVisibility({ isLoading: false }));
+        return EMPTY;
+      })
+    ));
 
-          return {
-            type: '[Cities List/API] Fetch Cities and their Weather Success',
-            citiesWeatherList: citiesWeatherList.map((cityWeather: CityWeatherDetails) => ({
-              id: cityWeather?.id,
-              cityName: cityWeather?.name,
-              windSpeed: cityWeather.wind?.speed + MeasurementUnits.MeterPerSecond,
-              temperature: {
-                value: cityWeather.main?.temp + MeasurementUnits.Celsius,
-                description: cityWeather?.weather[0]?.description,
-                image: `http://openweathermap.org/img/wn/${cityWeather?.weather[0]?.icon}@2x.png`
-              },
-            }))
-          }
-        }),
-        catchError(() => {
-          this.store.dispatch(toggleLoaderVisibility({ isLoading: false }));
-          this.alertService.notification$.next('Error Occurred');
-
-          return EMPTY;
-        })
-      )
-    )
-  ));
-
-  constructor(
+  public constructor(
     private actions$: Actions,
     private weatherService: WeatherService,
     private alertService: AlertService,
-    private store: Store<AppState>
+    private store: Store,
   ) {}
 }

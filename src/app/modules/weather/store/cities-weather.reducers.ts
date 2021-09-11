@@ -1,19 +1,48 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 
-import { fetchCitiesWeather, toggleLoaderVisibility } from './cities-weather.actions';
-import { CityWeather } from '../models/city-weather.model';
-import { CityWeatherForecast } from './../models/city-weather-forecast.model';
-
-export const initialCitiesWeatherState:CityWeather[] = [];
-export const initialCityWeatherForecastState:CityWeatherForecast[] = [];
-export const initialLoaderState:boolean = false;
+import { initialCitiesWeatherState, CitiesWeatherState } from './cities-weather.state';
+import {
+  fetchCitiesWeather,
+  fetchCitiesWeatherSuccess,
+  fetchCitiesWeatherFail,
+  fetchCityWeatherForecast,
+  fetchCityWeatherForecastSuccess,
+  fetchCityWeatherForecastFail,
+} from './cities-weather.actions';
 
 export const citiesWeatherReducer = createReducer(
   initialCitiesWeatherState,
-  on(fetchCitiesWeather, (_state, { citiesWeatherList }) => [...citiesWeatherList]),
+  on(fetchCitiesWeather, state => ({
+    ...state,
+    citiesWeatherList: [...state.citiesWeatherList],
+  })),
+  on(fetchCitiesWeatherSuccess, (state, { citiesWeatherList, pending }) => ({
+    ...state,
+    pending,
+    citiesWeatherList: [...citiesWeatherList],
+  })),
+  on(fetchCitiesWeatherFail, (state, { citiesWeatherList, pending }) => ({
+    ...state,
+    pending,
+    citiesWeatherList,
+  })),
+  on(fetchCityWeatherForecast, (state, { pending, forecastCityName }) => ({
+    ...state,
+    pending,
+    forecastCityName,
+  })),
+  on(fetchCityWeatherForecastSuccess, (state, { pending, cityWeatherForecast }) => ({
+    ...state,
+    pending,
+    cityWeatherForecast,
+  })),
+  on(fetchCityWeatherForecastFail, (state, { pending, cityWeatherForecast }) => ({
+    ...state,
+    pending,
+    cityWeatherForecast,
+  })),
 );
 
-export const loadingReducer = createReducer(
-  initialLoaderState,
-  on(toggleLoaderVisibility, (_state, { isLoading }) => isLoading),
-)
+export function reducer(state: CitiesWeatherState | undefined, action: Action) {
+  return citiesWeatherReducer(state, action);
+}

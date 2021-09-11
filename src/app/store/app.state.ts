@@ -1,11 +1,12 @@
-import { CityWeather } from './../modules/weather/models/city-weather.model';
+import {
+  CitiesWeatherState,
+  initialCitiesWeatherState,
+} from './../modules/weather/store/cities-weather.state';
 
 export interface AppState {
-  isLoading: boolean;
-  citiesWeatherList: CityWeather[];
+  citiesWeather: CitiesWeatherState;
 }
 
 export default {
-  isLoading: false,
-  citiesWeatherList: [],
+  citiesWeather: initialCitiesWeatherState,
 } as AppState;

@@ -1,14 +1,14 @@
 import { createSelector } from "@ngrx/store";
 
-import { CityWeather } from './../models/city-weather.model';
+import { CitiesWeatherState } from './cities-weather.state';
 import { AppState } from './../../../store/app.state';
 
 export const selectCitiesWeatherList = createSelector(
-  (state: AppState) => state.citiesWeatherList,
-  (citiesWeatherList: CityWeather[]) => citiesWeatherList
+  (state: AppState) => state.citiesWeather,
+  (state: CitiesWeatherState) => state.citiesWeatherList,
 );
 
-export const selectIsLoading = createSelector(
-  (state: AppState) => state.isLoading,
-  (isLoading: boolean) => isLoading
-)
+export const selectPending = createSelector(
+  (state: AppState) => state.citiesWeather,
+  (state: CitiesWeatherState) => state.pending,
+);

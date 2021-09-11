@@ -1,6 +1,5 @@
-import { citiesWeatherReducer, loadingReducer } from './../modules/weather/store/cities-weather.reducers';
+import * as citiesWeatherReducer from './../modules/weather/store/cities-weather.reducers';
 
 export default {
-  isLoading: loadingReducer,
-  citiesWeatherList: citiesWeatherReducer,
+  citiesWeather: citiesWeatherReducer.reducer
 }
