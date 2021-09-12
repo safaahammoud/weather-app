@@ -27,12 +27,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private store: Store<AppState>,
     private alertService: AlertService,
-    private changeDetectorRef: ChangeDetectorRef,
   ) { }
 
   public ngOnInit(): void {
-    this.changeDetectorRef.detectChanges();
-
     this.alertService.notification$.subscribe((message: string) => {
       this.snackBar.open(message, 'x', {
           duration: 3000
