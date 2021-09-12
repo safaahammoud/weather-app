@@ -1,27 +1,28 @@
-# WeatherApp
+## Project Framework
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.
+The Angular framework, version 12.2.0, was used to create this project.
 
-## Development server
+## Project Structure
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The project main directories are: modules and shared,and store.
 
-## Code scaffolding
+- Modules directory contains all the lazy loaded modules. Each module has its own components,store, and shared directory.
+  
+  The following folders are found in each module:
+  
+  - Components: contains sections to be added to the module pages.
+  - Shared: contains the shared constants, interfaces, services, etc. only used by multiple pages of the modules when needed, the reason I added them in the shared folder is to keep the code as clean as possible by applying the DRY principle.
+  - Store: contains all the module logic of state, including state, actions, effects, reducers, selectors, etc.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Extra Features Development
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- tsconfig setup for shortening and organizing the project's internal import URLs.
+- All ts files are linterned using a predetermined setup based on best practices.
+- Netlify was used to deploy the application. This link will take you to the weather application. [link](https://thirsty-northcutt-236171.netlify.app/).
+- Committed changes to a remote Bitbucket repository. Can be accessed via this [link](https://bitbucket.org/safaahammoud/weather-app/src/master/).
 
-## Running unit tests
+### Practical Extra Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Error Handling on a Global Scale: Send a toast message to the user in the event of an API Error.
+- A horizontal loader shows at the bottom of the application's main toolbar if there is a pending request.
