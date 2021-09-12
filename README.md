@@ -18,7 +18,7 @@ The project main directories are: modules and shared,and store.
 ### Extra Features Development
 
 - All ts files are linterned using a predetermined setup based on best practices.
-- Netlify was used to deploy the application. This link will take you to the weather application. [link](https://thirsty-northcutt-236171.netlify.app/).
+- Netlify was used to deploy the application. This link will take you to the weather application. [link](https://safaa-backbase-weather-app.netlify.app/).
 - Committed changes to a remote Bitbucket repository. Can be accessed via this [link](https://bitbucket.org/safaahammoud/weather-app/src/master/).
 
 ### Practical Extra Features
