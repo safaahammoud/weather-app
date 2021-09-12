@@ -31,10 +31,7 @@ export class CitiesWeatherListComponent implements OnInit {
   }
 
   public onCitySelect(cityName: string): void {
-    this.store.dispatch(fetchCityWeatherForecast({
-      pending: true,
-      forecastCityName: cityName,
-    }));
+    this.store.dispatch(fetchCityWeatherForecast({ forecastCityName: cityName }));
 
     this.router.navigate(['/weather/weather-forecast'], {
       queryParams: {

@@ -41,21 +41,14 @@ export class CityWeatherForecastComponent implements OnInit, OnDestroy {
 
       if (routeParams) {
         this.weatherService.fetchCityWeatherForecast(routeParams?.cityName).subscribe(response => {
-          this.store.dispatch(fetchCityWeatherForecastSuccess({
-            pending: false,
-            cityWeatherForecast: response,
-          }));
+          this.store.dispatch(fetchCityWeatherForecastSuccess({ cityWeatherForecast: response }));
 
           this.cityWeatherForecast = response;
 
           this.changeDetectorRef.detectChanges();
         });
       } else {
-        this.store.dispatch(fetchCityWeatherForecastFail({
-          pending: false,
-          error: new Error(),
-          cityWeatherForecast: initialCityWeatherForecast,
-        }))
+        this.store.dispatch(fetchCityWeatherForecastFail({ error: new Error() }))
       }
     });
   }

@@ -6,12 +6,14 @@ import {
 
 export interface CitiesWeatherState {
   pending: boolean;
+  error: Error | null;
   forecastCityName: string;
   citiesWeatherList: CityWeather[];
   cityWeatherForecast: CityWeatherForecast;
 };
 
 export const initialCitiesWeatherState = {
+  error: null,
   pending: true,
   forecastCityName: '',
   citiesWeatherList: [] as CityWeather[],

@@ -14,32 +14,32 @@ export const citiesWeatherReducer = createReducer(
   initialCitiesWeatherState,
   on(fetchCitiesWeather, state => ({
     ...state,
-    citiesWeatherList: [...state.citiesWeatherList],
+    pending: true,
   })),
-  on(fetchCitiesWeatherSuccess, (state, { citiesWeatherList, pending }) => ({
+  on(fetchCitiesWeatherSuccess, (state, { citiesWeatherList }) => ({
     ...state,
-    pending,
+    pending: false,
     citiesWeatherList: [...citiesWeatherList],
   })),
-  on(fetchCitiesWeatherFail, (state, { citiesWeatherList, pending }) => ({
+  on(fetchCitiesWeatherFail, (state, { error }) => ({
     ...state,
-    pending,
-    citiesWeatherList,
+    error,
+    pending: false,
   })),
-  on(fetchCityWeatherForecast, (state, { pending, forecastCityName }) => ({
+  on(fetchCityWeatherForecast, (state, { forecastCityName }) => ({
     ...state,
-    pending,
+    pending: true,
     forecastCityName,
   })),
-  on(fetchCityWeatherForecastSuccess, (state, { pending, cityWeatherForecast }) => ({
+  on(fetchCityWeatherForecastSuccess, (state, { cityWeatherForecast }) => ({
     ...state,
-    pending,
+    pending: false,
     cityWeatherForecast,
   })),
-  on(fetchCityWeatherForecastFail, (state, { pending, cityWeatherForecast }) => ({
+  on(fetchCityWeatherForecastFail, (state, { error }) => ({
     ...state,
-    pending,
-    cityWeatherForecast,
+    error,
+    pending: false,
   })),
 );
 

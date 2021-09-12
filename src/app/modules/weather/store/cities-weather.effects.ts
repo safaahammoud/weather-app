@@ -32,11 +32,7 @@ export class CitiesWeatherEffects {
       })),
       catchError((error: Error) => {
         this.alertService.notification$.next('Error Occurred');
-        this.store.dispatch(fetchCitiesWeatherFail({
-          error,
-          pending: false,
-          citiesWeatherList: [],
-        }));
+        this.store.dispatch(fetchCitiesWeatherFail({ error }));
 
         return EMPTY;
       })
