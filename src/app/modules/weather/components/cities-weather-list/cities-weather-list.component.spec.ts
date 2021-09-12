@@ -9,9 +9,9 @@ import { CitiesWeatherListRoutingModule } from './cities-weather-list-routing.mo
 import { CitiesWeatherListComponent } from './cities-weather-list.component';
 import { ComponentModule } from './../../../../shared/components/component.module';
 import { MaterialModule } from './../../../../shared/modules/material.module';
-import { citiesWeatherListMock } from './../../../../../testing/models/city-weather.mock';
 import appReducers from 'app/store/app.reducers';
 import { Observable } from 'rxjs';
+import { MOCKED_CITIES } from 'testing/models/mock-cities-weather';
 
 export type Primitive = number | string | boolean | object;
 
@@ -56,10 +56,10 @@ describe('CitiesWeatherListComponent', () => {
   });
 
   it('should display set cities weather list', () => {
-    component.citiesWeatherList$ = of(citiesWeatherListMock);
+    component.citiesWeatherList$ = of(MOCKED_CITIES);
 
     component.citiesWeatherList$.subscribe(response => {
-      expect(response).toBe(citiesWeatherListMock);
+      expect(response).toBe(MOCKED_CITIES);
     });
 
     fixture.detectChanges();
@@ -67,7 +67,7 @@ describe('CitiesWeatherListComponent', () => {
 
   describe('onCitySelect', (): void => {
     it('should call router navigate', (): void => {
-      let cityName = citiesWeatherListMock[0].cityName;
+      let cityName = MOCKED_CITIES[0].cityName;
 
       component.onCitySelect(cityName || '');
 
