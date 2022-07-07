@@ -7,9 +7,7 @@ import { MaterialModule } from './../../../../shared/modules/material.module';
 import { ComponentModule } from './../../../../shared/components/component.module';
 
 @NgModule({
-  declarations: [
-    CitiesWeatherListComponent,
-  ],
+  declarations: [CitiesWeatherListComponent],
   imports: [
     CommonModule,
     MaterialModule,
